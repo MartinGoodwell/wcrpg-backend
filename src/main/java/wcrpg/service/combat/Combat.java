@@ -8,6 +8,12 @@ import wcrpg.model.combat.Combatant;
 import wcrpg.model.combat.InitiativeCheckValue;
 import wcrpg.service.CheckService;
 
+
+/**
+ * decide on grid vs no-grid and turn-based vs simultaneous
+ * @author Martin.Gutenbrunner
+ *
+ */
 public class Combat {
 
   private CheckService checkService = CheckService.INSTANCE;
@@ -80,13 +86,6 @@ public class Combat {
     int nrEntries = pcCombatants.getCombatants().size() + npcCombatants.getCombatants().size() + 1;
     List<InitiativeCheckValue> tempOrder = new ArrayList<>(nrEntries);
 
-    // TODO create a list of InitialCheckValue objects that holds combatant and
-    // initialCheckValue.
-    // after determining the icv for all combatants, put them into the battleOrder
-    // array.
-    // the InitialCheckValue list will not be needed anymore after that.
-    // if ICV is needed more often than just in step two of a combat, we'll it in a
-    // different way
     tempOrder.addAll(doInitiativeCheckForCombatGroup(pcCombatants));
     tempOrder.addAll(doInitiativeCheckForCombatGroup(npcCombatants));
 
